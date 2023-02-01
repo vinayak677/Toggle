@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import React, { useEffect, useState } from "react";
+import ReactSwitch from "react-switch";
+
+export default function App() {
+  const [checked, setChecked] = useState(true);
+
+  const handleChange = (val) => {
+    setChecked(val);
+  };
+  useEffect(() => {
+    let btn = document.querySelector(".btn");
+    let body = document.querySelector("body");
+
+    btn.addEventListener("click", function () {
+      body.classList.toggle("dark");
+    });
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>hello please click to change color</p>
+      {/* <button>color change</button> */}
+      <ReactSwitch className="btn" checked={checked} onChange={handleChange} />
     </div>
   );
 }
-
-export default App;
